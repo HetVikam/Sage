@@ -7,7 +7,7 @@
 Requirement: Python: 3.7+
 
 1. `git clone https://github.com/notmarshmllow/sage.git`
-2. `cd Sage\`
+2. `cd Sage`
 3. `pip install -r requirements.txt`
 4. `python3 sage.py -h`
 
