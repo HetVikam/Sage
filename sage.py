@@ -78,7 +78,7 @@ def main():
 
         page = s.get(url_org).text
         if 'We couldn’t find any code matching' in page:
-            print('No Repositories Found. Please check the Organization name.')
+            print(colored('\nNo Repositories Found. Please check the Organization name.' , 'red'))
             sys.exit(1)
         soup = BeautifulSoup(page, 'html5lib')
 
@@ -97,7 +97,7 @@ def main():
 
         total_repositories = len(final_url_list)
 
-        print(f'\nFinding S3 Buckets.')
+        print(f'\nFinding S3 Buckets...')
         print("\n")
         if total_repositories == 0 and x < 2:
             print(colored("Make sure your credentials are properly configured.", 'red'))
