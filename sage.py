@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from urlextract import URLExtract
 import threading
 import cred
+import exclude
 import argparse
 import sys
 from colorama import init
@@ -13,12 +14,13 @@ from termcolor import colored
 import random
 
 
+
 parser = argparse.ArgumentParser(description="Find S3 Buckets from an Organization's Github")
 parser.add_argument('-org', help='Enter the name of the organization.', required=True)
 parser.add_argument('-q', help='Query to Search for Buckets. Default: s3.amazonaws.com', default='s3.amazonaws.com')
 parser.add_argument('-o', help='Output to a file.')
 parser.add_argument('-p', type=int, help='Number of Pages to scrape for S3 Buckets.', default=100)
-def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
+
 args = parser.parse_args()
 
 init()
@@ -32,7 +34,7 @@ exclude = ['http://s3.amazonaws.com/doc/2006-03-01/', 'https://github-cloud.s3.a
 login_data = cred.credentials
 
 def banner():
-    print(f'''
+    print('''
     _____ ___   ____________
   / ___//   | / ____/ ____/
   \__ \/ /| |/ / __/ __/   
@@ -74,19 +76,21 @@ def main():
         url_org = f'https://github.com/search?p={x}&q=org%3A{organization}+{query}&type=code'
 
 
-
         page = s.get(url_org).text
+        if 'We couldn’t find any code matching' in page:
+            print('No Repositories Found. Please check the Organization name.')
+            sys.exit(1)
         soup = BeautifulSoup(page, 'html5lib')
 
         url_list = []
 
         for link in soup.findAll('a'):
             inside_file = link.get('href')
-            if f'/{organization}/' in inside_file:
-                full_url = 'https://github.com' + inside_file
-                head = full_url.partition('#')
-                url_list.append(head[0])
-                
+            full_url = 'https://github.com/' + inside_file
+
+            head = full_url.partition('#')
+            url_list.append(head[0])
+            
         final_url_list = set(url_list)
         final_url_list = list(final_url_list)
 
@@ -108,7 +112,7 @@ def main():
             inner_url_fetch = s.get(inner_url).text
             extractor = URLExtract()
             for bucketurl in extractor.gen_urls(inner_url_fetch):
-                if bucketurl not in exclude and 's3.amazonaws.com' in bucketurl:
+                if bucketurl not in exclude and 'https://github.com/search/' not in bucketurl and args.q in bucketurl:
                     try:
                         check_takeover = requests.get(bucketurl)
                         status = check_takeover.status_code
@@ -132,7 +136,6 @@ def main():
 
                     except:
                         pass
-
                     
         x=x+1
 
