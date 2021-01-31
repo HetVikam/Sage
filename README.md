@@ -1,6 +1,6 @@
 # Sage - Fast Scraping Tool to quickly find S3 Buckets, S3 Bucket Takeover and URLs from organization's GitHub Repositories.
 
-![alt_text](https://github.com/notmarshmllow/Sage/blob/main/image.png)
+![alt_text](https://github.com/notmarshmllow/Sage/blob/main/image-01.png)
 
 # INSTALLATION
 
