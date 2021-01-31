@@ -97,7 +97,7 @@ def main():
 
         total_repositories = len(final_url_list)
 
-        print(f'\nFetched {total_repositories} repositories from page {x} that contain S3 Buckets .')
+        print(f'\nFinding S3 Buckets.')
         print("\n")
         if total_repositories == 0 and x < 2:
             print(colored("Make sure your credentials are properly configured.", 'red'))
