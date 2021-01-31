@@ -30,9 +30,9 @@ headers = {
 exclude = ['http://s3.amazonaws.com/doc/2006-03-01/', 'https://github-cloud.s3.amazonaws.com', 'https://codon-buildpacks.s3.amazonaws.com/']
 
 login_data = cred.credentials
-x = (colored('@notmarshmllow', 'red'))
+
 def banner():
-    prCyan(f'''
+    print(f'''
     _____ ___   ____________
   / ___//   | / ____/ ____/
   \__ \/ /| |/ / __/ __/   
@@ -40,7 +40,7 @@ def banner():
 /____/_/  |_\____/_____/
                         v1.0
     Scrape S3 Buckets from GitHub
-    Developed by {x}
+    Developed by @notmarshmllow
     ''')
 
 banner()
