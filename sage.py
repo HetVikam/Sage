@@ -13,13 +13,12 @@ from termcolor import colored
 import random
 
 
-
 parser = argparse.ArgumentParser(description="Find S3 Buckets from an Organization's Github")
 parser.add_argument('-org', help='Enter the name of the organization.', required=True)
 parser.add_argument('-q', help='Query to Search for Buckets. Default: s3.amazonaws.com', default='s3.amazonaws.com')
 parser.add_argument('-o', help='Output to a file.')
 parser.add_argument('-p', type=int, help='Number of Pages to scrape for S3 Buckets.', default=100)
-
+def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
 args = parser.parse_args()
 
 init()
@@ -31,9 +30,9 @@ headers = {
 exclude = ['http://s3.amazonaws.com/doc/2006-03-01/', 'https://github-cloud.s3.amazonaws.com', 'https://codon-buildpacks.s3.amazonaws.com/']
 
 login_data = cred.credentials
-
+x = (colored('@notmarshmllow', 'red'))
 def banner():
-    print('''
+    prCyan(f'''
     _____ ___   ____________
   / ___//   | / ____/ ____/
   \__ \/ /| |/ / __/ __/   
@@ -41,7 +40,7 @@ def banner():
 /____/_/  |_\____/_____/
                         v1.0
     Scrape S3 Buckets from GitHub
-    Developed by @notmarshmllow
+    Developed by {x}
     ''')
 
 banner()
