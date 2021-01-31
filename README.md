@@ -36,6 +36,22 @@ The `-p` switch takes integer as input. It accepts the number of pages to scrape
 
 `python3 sage.py -org Google -p 8`
 
+# CUSTOM QUERY
+
+The `-q` switch can be used to search for custom query. By default, sage looks for 's3.amazonaws.com' to find s3 Buckets.
+
+`python3 sage.py -org Google -q us-west`
+
+# FINDING SUBDOMAINS
+
+The `-q` switch can also be used to find Subdomains of a domain.
+
+`python3 sage.py -org Apple -q apple.com` 
+
+Note: Output will only be URLs and not any other String.
+
+Be Creative with this!
+
 
 # OUTPUT TO A FILE
 
