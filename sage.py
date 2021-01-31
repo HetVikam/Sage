@@ -112,7 +112,7 @@ def main():
             inner_url_fetch = s.get(inner_url).text
             extractor = URLExtract()
             for bucketurl in extractor.gen_urls(inner_url_fetch):
-                if bucketurl not in exclude and 'https://github.com/search/' not in bucketurl and args.q in bucketurl:
+                if bucketurl not in exclude and 'https://github.com/search' not in bucketurl and args.q in bucketurl:
                     try:
                         check_takeover = requests.get(bucketurl)
                         status = check_takeover.status_code
