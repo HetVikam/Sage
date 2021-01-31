@@ -29,7 +29,7 @@ headers = {
     'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'
 }
 
-exclude = ['http://s3.amazonaws.com/doc/2006-03-01/', 'https://github-cloud.s3.amazonaws.com', 'https://codon-buildpacks.s3.amazonaws.com/']
+exclude = ['http://s3.amazonaws.com/doc/2006-03-01/', 'https://github-cloud.s3.amazonaws.com', 'https://github.com/', 'https://codon-buildpacks.s3.amazonaws.com/']
 
 login_data = cred.credentials
 
@@ -96,8 +96,7 @@ def main():
 
 
         total_repositories = len(final_url_list)
-
-        print(f'\nFinding S3 Buckets...')
+        
         print("\n")
         if total_repositories == 0 and x < 2:
             print(colored("Make sure your credentials are properly configured.", 'red'))
@@ -105,6 +104,9 @@ def main():
         if total_repositories ==0:
             print('Cannot find more S3 Buckets.')
             sys.exit(1)
+        else:
+            print(f"Fetching Data from Page: {x}")
+            print("\n")
 
 
         for i in (final_url_list):
@@ -112,7 +114,7 @@ def main():
             inner_url_fetch = s.get(inner_url).text
             extractor = URLExtract()
             for bucketurl in extractor.gen_urls(inner_url_fetch):
-                if bucketurl not in exclude and 'https://github.com/search' not in bucketurl and args.q in bucketurl:
+                if bucketurl not in exclude and 'https://github.com/' not in bucketurl and args.q in bucketurl:
                     try:
                         check_takeover = requests.get(bucketurl)
                         status = check_takeover.status_code
