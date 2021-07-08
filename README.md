@@ -56,7 +56,7 @@ Be Creative with this!
 
 The `-o` switch prints output to a file.
 
-`python3 sage.py -org Google -p 8 -o facebook_s3.txt`
+`python3 sage.py -org Google -p 8 -o google_s3.txt`
 
 # S3 Bucket Takoover
 
