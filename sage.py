@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from urlextract import URLExtract
 import threading
 import cred
-import exclude
 import argparse
 import sys
 from colorama import init
