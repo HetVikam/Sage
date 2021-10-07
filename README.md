@@ -86,4 +86,4 @@ If you find any repetative or irreleant bucket that isn't associated with your t
 
 All developments to Sage are highly welcomed and much appreciated!
 
-Sage - Developed by [@notmarshmllow](https://twitter.com/notmarshmllow):heart:
+Sage - Developed by [@notmarshmllow](https://twitter.com/notmarshmllow) & [@het_vikam](https://twitter.com/het_vikam):heart:
